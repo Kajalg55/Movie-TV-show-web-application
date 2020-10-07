@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files*/
+/* @import "assets/css/propeller.css"; */
+@import '~ngx-bar-rating/themes/br-default-theme';
+@import '~ngx-bar-rating/themes/br-movie-theme';
+@import '~ngx-bar-rating/themes/br-fontawesome-o-theme';
+.pmd-sidebar{
+    width: 0;
+    min-width: 0;
+}
+
+.pmd-sidebar.pmd-sidebar-open{
+    width: 260px;
+}
+
+.section-container{
+    max-width: 1200px;
+    padding-bottom: 3.375rem;
+}
+
+.pmd-sidebar-slide-push.pmd-sidebar-open~.pmd-content, .pmd-sidebar-slide-push.pmd-sidebar-open~.wrapper .constructor{
+    margin-left: 260px;
+}
+
+.pmd-sidebar-nav .pmd-user-info .nav-link{
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    background-color: transparent;
+}
+
+.pmd-sidebar .pmd-user-info h3 {
+    color: #fff;
+    padding-top: .5rem;
+}
+
+.pmd-sidebar .pmd-user-info .pmd-subheading{
+    font-size: 14px;
+}

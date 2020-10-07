@@ -1,0 +1,69 @@
+<div class="ui container">
+<div class="movie-header">Welcome.
+  Millions of movies, TV shows and people to discover. Explore now.</div>
+  <p-tabView (onChange)="handleChange($event)" >
+    <p-tabPanel   header="Movie">
+      <div class="ui link five doubling cards">
+        <div class="card" *ngFor="let movie of movies | async" [routerLink]="['/movie/'+movie.id]" routerLinkActive="active">
+          <div class="image">
+            <img *ngIf="movie.poster_path" class="ui middle aligned tiny image" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}">
+            <img *ngIf="!movie.poster_path" class="ui middle aligned tiny image" src="https://placehold.it/500x740">
+          </div>
+          <div class="content">
+            <div class="header">
+                {{ movie.title }}
+            </div>
+    
+            <div class="description">
+              <span>Popularity</span>
+              : {{ movie.popularity  | number : '1.0-1' }}
+              
+            </div>
+          </div>
+          <div class="extra content">
+            <span class="right floated">
+              <h3>
+                <i class="star icon"></i>
+                {{ movie.rating }}
+              </h3>
+    
+            </span>
+            {{ movie.release_date }}
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="TV show">
+      <div class="ui link five doubling cards">
+        <div class="card" *ngFor="let movie of movies | async" [routerLink]="['/tvshow/'+movie.id]" routerLinkActive="active">
+          <div class="image">
+            <img *ngIf="movie.poster_path" class="ui middle aligned tiny image" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}">
+            <img *ngIf="!movie.poster_path" class="ui middle aligned tiny image" src="https://placehold.it/500x740">
+          </div>
+          <div class="content">
+            <div class="header">
+                {{ movie.title }}
+            </div>
+    
+            <div class="description">
+              <span>Popularity</span>
+              : {{ movie.popularity  | number : '1.0-1' }}
+              
+            </div>
+          </div>
+          <div class="extra content">
+            <span class="right floated">
+              <h3>
+                <i class="star icon"></i>
+                {{ movie.rating }}
+              </h3>
+    
+            </span>
+            {{ movie.release_date }}
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+</p-tabView>
+  
+</div>

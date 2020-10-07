@@ -1,0 +1,85 @@
+<div class="ui container">
+  <h2 class="ui orange header">
+    {{ selectedTvShow?.original_name }}
+    <div class="sub header">{{ selectedTvShow?.original_name }}</div>
+  </h2>
+
+  <div class="ui floating message" id="main" >
+    <div class="ui padded grid" id="content">
+      <div class="sixteen wide mobile eight wide tablet twelve wide computer column">
+        <div class="ui centered grid">
+
+          <!-- gatunki -->
+          <div  class="sixteen wide mobile sixteen wide tablet sixteen wide computer column">
+            <i *ngFor="let genre of selectedTvShow?.genres" class="ui red label">{{ genre.name }}</i>
+          </div>
+          <!-- -->
+
+          <!-- opis -->
+          <div  class="sixteen wide mobile sixteen wide tablet sixteen wide computer column">
+            <div class="ui sub header">
+            
+              <span >Overview</span>
+            </div>
+            {{ selectedTvShow?.overview }}
+          </div>
+          <!-- -->
+          
+          <!-- WWW -->
+          <div  class="sixteen wide mobile sixteen wide tablet sixteen wide computer column">
+            <div class="ui sub header">
+              <span >Additional information</span>
+            </div>
+
+            <a *ngIf="selectedTvShow?.imdb_id" href="http://www.imdb.com/title/{{ selectedTvShow?.imdb_id }}/">
+              <i class="ui yellow label">IMDb</i>
+            </a>
+
+            <a *ngIf="selectedTvShow?.homepage" href="{{ selectedTvShow?.homepage }}/">
+              <i class="ui label">WWW</i>
+            </a>
+          </div>
+             
+          <div  class="center aligned eight wide mobile eight wide tablet four wide computer column">
+      
+            <bar-rating [rate]="rate" (rateChange)="onRateChange($event)" [max]="10" theme="fontawesome-o"></bar-rating>
+            
+            <p *ngIf="!faoRated">Current rating: {{rate}}</p>
+            <p *ngIf="faoRated">Your rating: {{rate}} <i class="link fa fa-times-circle" (click)="ratingReset()"></i></p>
+            
+            </div>
+          <div  class="center aligned eight wide mobile eight wide tablet four wide computer column">
+            <div class="ui teal statistic">
+              <div class="label">
+             
+                <span >Popularity</span></div>
+              <div class="text value">{{ selectedTvShow?.popularity | number: '1.0-2' }}</div>
+            </div>
+          </div>
+
+          <div  class="center aligned eight wide mobile eight wide tablet five wide computer column">
+            <div class="ui blue statistic">
+              <div class="label">
+              
+                <span>Release date</span></div>
+              <div class="text value">{{ selectedTvShow?.first_air_date }}</div>
+            </div>
+          </div>
+          <!-- -->
+        </div>
+      </div>
+    </div>
+
+    <div class="sixteen wide column">
+      <div class="ui large animated fluid button" tabindex="0" (click)="back()">
+        <div class="visible content">
+          <i class="left arrow icon"></i>
+        </div>
+        <div class="hidden content">
+          
+          <span>Back</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
