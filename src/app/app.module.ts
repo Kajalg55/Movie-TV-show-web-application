@@ -20,6 +20,7 @@ import { SearchMoviesComponent } from './search/search-movies.component';
 import {AppGlobals} from './app.global'
 import {RatingComponent } from './rating/rating.component';
 import { TvShowDetailsComponent } from './tvshow-details/tvshow-details.component';
+import {ActorComponent} from './actor/actor.component';
 
 import { MoviesService } from './movies/movies.service';
 import { SearchService } from './search/search.service';
@@ -29,6 +30,7 @@ import { RatingService } from './rating/rating.service';
 import { BarRatingModule } from "ngx-bar-rating";
 import {TabViewModule} from 'primeng/tabview';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import {ActorService} from './actor/actor.service';
 
 @NgModule ({
     imports: [
@@ -56,10 +58,11 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
         PageNotFoundComponent,
         SearchMoviesComponent,
         RatingComponent,
-        TvShowDetailsComponent
+        TvShowDetailsComponent,
+        ActorComponent
      ],
     providers: [
-        AppGlobals,MoviesService,SearchService,MovieDetailService,RatingService,TvShowDetailService
+        AppGlobals,MoviesService,SearchService,MovieDetailService,RatingService,TvShowDetailService,ActorService
 
         // provider used to create fake backend
         

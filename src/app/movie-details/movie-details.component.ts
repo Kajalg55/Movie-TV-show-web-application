@@ -6,6 +6,8 @@ import { Location } from '@angular/common';
 import { MovieDetailService } from './movie-details.service';
 import { ToastrService } from 'ngx-toastr';
 
+import { Credit } from '../movies/credits';
+
 @Component({
   selector: 'app-details',
   templateUrl: './movie-details.component.html',
@@ -17,8 +19,11 @@ export class MovieDetailsComponent implements OnInit {
   public language: string;
   public formRating: any;
   public isRated: boolean = false;
-  public rate:number;
+  public rate: number;
+  public selectedCredits: Credit;
+
   private _movieId: number;
+
 
   constructor(
     private _moviesService: MoviesService,
@@ -35,19 +40,28 @@ export class MovieDetailsComponent implements OnInit {
     this.route.params.subscribe(
       params => {
         this._movieId = params['id'];
-        if (this._movieId) this.getDetails(this._movieId);
+        if (this._movieId) {
+          this.getDetails(this._movieId);
+          this.getCredits(this._movieId);
+        };
       });
   }
 
-public getDetails(id: number): void {
+  public getDetails(id: number): void {
     this._moviesService.getDetails(id)
       .subscribe(
         response => this.selectedMovie = response,
         error => this.errorMessage = <any>error);
-        this._moviesService.getDetails(id).subscribe((result:Movie) => {
-          this.selectedMovie = result;
-          this.rate =this.selectedMovie.vote_average;
-        });
+    this._moviesService.getDetails(id).subscribe((result: Movie) => {
+      this.selectedMovie = result;
+      this.rate = this.selectedMovie.vote_average;
+    });
+  }
+
+  public getCredits(id: number): void {
+    this._moviesService.getCredits(id).subscribe((result) => {
+      this.selectedCredits = result.cast;
+    });
   }
 
   public addRating(rate): void {
@@ -62,18 +76,18 @@ public getDetails(id: number): void {
     }
 
   }
-  public back():void {
+  public back(): void {
     this.location.back();
   }
 
 
-  public onRateChange(e):void {
+  public onRateChange(e): void {
     this.isRated = true;
     this.rate = e;
     this.addRating(this.rate);
   }
 
-  public ratingReset() :void{
+  public ratingReset(): void {
     this.isRated = false;
     this.rate = 0.5;
   }

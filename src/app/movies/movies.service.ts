@@ -40,6 +40,13 @@ export class MoviesService {
     return this.http.get(detailsUrl).pipe(map((res) => { return res.json() }))
   }
   
+
+  public getCredits(id:number){
+    let detailsUrl = `${this.url}${id}/credits?api_key=${this.apiKey}&language=${this.language}`;
+
+    return this.http.get(detailsUrl).pipe(map((res) => { return res.json() }))
+  }
+
   private extractData(res: Response) {
     let body = res.json();
     return body.results || { };
